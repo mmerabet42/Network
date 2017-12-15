@@ -1,0 +1,44 @@
+#include <stdio.h>
+#include <pthread.h>
+
+void	*routine_a(void *arg);
+void	*routine_b(void *arg);
+
+int val = 0;
+pthread_t t_a;
+pthread_t t_b;
+
+int main()
+{
+
+	if (pthread_create(&t_a, NULL, routine_a, NULL) || pthread(&t_b, NULL, routine_b, NULL))
+	{
+		return (EXIT_FAILLURE);
+	}
+
+	return (0);
+}
+
+void	*routine_a(void *arg)
+{
+
+	while (1)
+	{
+		if (val == 10)
+			printf("VAL IS EQUAL TO 10 !!\n");
+	}
+
+	pthread_exit(NULL);
+}
+
+void	*routine_b(void *arg)
+{
+
+	while (1)
+	{
+		printf("val > ");
+		scanf("%d", &val);
+	}
+
+	pthread_exit(NULL);
+}
